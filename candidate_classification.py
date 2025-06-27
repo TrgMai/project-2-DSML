@@ -620,7 +620,7 @@ def show_candidate_predict():
             text_embeddings = None
             try:
                 text_embeddings = np.load("files/text_embeddings.npy")
-                st.success("✅ Loaded text_embeddings.npy")
+                # st.success("✅ Loaded text_embeddings.npy")
             except:
                 st.info("ℹ️ text_embeddings.npy not found - will use simplified approach")
             
@@ -668,9 +668,10 @@ def show_candidate_predict():
     ref_df = load_reference_data()
     
     # Hiển thị thông tin model
-    st.info("🤖 Sử dụng Model thật với preprocessing components có sẵn")
+    # st.info("🤖 Sử dụng Model thật với preprocessing components có sẵn")
     if hasattr(model, 'n_features_in_'):
-        st.info(f"📊 Model expects {model.n_features_in_} features")
+        # st.info(f"📊 Model expects {model.n_features_in_} features")
+        pass
     
     # Input form
     st.markdown("### 📝 Nhập thông tin công ty")
