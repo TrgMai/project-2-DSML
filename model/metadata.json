@@ -1,0 +1,27 @@
+{
+  "num_companies": 478,
+  "columns_processed": [
+    "processed_Company Type",
+    "processed_Company industry",
+    "processed_Company size",
+    "processed_Country",
+    "processed_Working days",
+    "processed_Overtime Policy",
+    "processed_Company overview"
+  ],
+  "models_available": {
+    "tfidf": true,
+    "doc2vec": true,
+    "fasttext": true,
+    "bert": true
+  },
+  "weights": {
+    "Company overview": 0.4,
+    "Company industry": 0.3,
+    "Company Type": 0.2,
+    "Company size": 0.05,
+    "Country": 0.05,
+    "Working days": 0.05,
+    "Overtime Policy": 0.05
+  }
+}

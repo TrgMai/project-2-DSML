@@ -5,8 +5,10 @@ import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime
 import time
+import os
 
 from candidate_classification import candidate_classification_tab
+from company_similarity import show_company_similarity
 
 # Cấu hình trang
 st.set_page_config(
@@ -123,13 +125,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Header chính
+if os.path.exists("images/banner.png"):
+        st.image("images/banner.png", use_column_width=True)
 st.markdown("""
 <div class="main-header">
-    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-        <div class="itviec-logo" style="margin-right: 1rem;">it</div>
-        <div class="itviec-logo" style="background: #e74c3c; margin-right: 0.5rem;">viec</div>
-        <div style="color: #bdc3c7; font-size: 1.2rem; margin-left: 0.5rem;">Việc làm cho developer chất</div>
-    </div>
     <div class="main-title">Đồ án tốt nghiệp - Data Science and Machine Learning</div>
     <div class="feature-title">Classification for Candidates</div>
     <div style="margin-top: 1rem;">
@@ -280,58 +279,7 @@ with tab1:
     st.plotly_chart(fig, use_container_width=True)
 
 with tab2:
-    st.markdown("### 🏢 Company Similarity & Recommendation")
-    
-    # Sidebar cho Company Similarity
-    col1, col2 = st.columns([1, 4])
-    
-    with col1:
-        st.markdown("""
-        <div style="background: #2c3e50; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
-            <h4 style="color: white; text-align: center; margin-bottom: 1rem;">📋 Menu</h4>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Navigation buttons
-        if st.button("📊 Tổng quan", key="company_overview", use_container_width=True):
-            st.session_state.company_page = "overview"
-        
-        if st.button("🏢 Tìm theo ID/Tên công ty", key="company_search_id", use_container_width=True):
-            st.session_state.company_page = "search_id"
-            
-        if st.button("📝 Tìm theo mô tả", key="company_search_desc", use_container_width=True):
-            st.session_state.company_page = "search_desc"
-    
-    with col2:
-        # Initialize session state
-        if 'company_page' not in st.session_state:
-            st.session_state.company_page = "overview"
-        
-        # Content area based on selected page
-        if st.session_state.company_page == "overview":
-            st.markdown("""
-            <div style="background: #34495e; padding: 2rem; border-radius: 10px; text-align: center;">
-                <h3 style="color: white;">📊 Tổng quan</h3>
-                <p style="color: #bdc3c7;">Nội dung tổng quan công ty sẽ được phát triển ở đây</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-        elif st.session_state.company_page == "search_id":
-            st.markdown("""
-            <div style="background: #34495e; padding: 2rem; border-radius: 10px; text-align: center;">
-                <h3 style="color: white;">🏢 Tìm theo ID/Tên công ty</h3>
-                <p style="color: #bdc3c7;">Nội dung tìm kiếm theo ID/Tên công ty sẽ được phát triển ở đây</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-        elif st.session_state.company_page == "search_desc":
-            st.markdown("""
-            <div style="background: #34495e; padding: 2rem; border-radius: 10px; text-align: center;">
-                <h3 style="color: white;">📝 Tìm theo mô tả</h3>
-                <p style="color: #bdc3c7;">Nội dung tìm kiếm theo mô tả sẽ được phát triển ở đây</p>
-            </div>
-            """, unsafe_allow_html=True)
-
+    show_company_similarity()
 with tab3:
     candidate_classification_tab()
 

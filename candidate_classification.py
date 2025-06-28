@@ -1029,7 +1029,7 @@ def show_candidate_predict():
 
 def candidate_classification_tab():
     """Main function cho Candidate Classification tab"""
-    st.markdown("### 👤 Candidate Classification")
+    st.markdown("## 👤 Candidate Classification")
     
     # Sidebar cho Candidate Classification
     col1, col2 = st.columns([1, 4])
