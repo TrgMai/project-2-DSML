@@ -941,91 +941,91 @@ def show_candidate_predict():
                 import traceback
                 st.code(traceback.format_exc())
     
-    # Instructions
-    with st.expander("📖 Hướng dẫn sử dụng", expanded=False):
-        st.markdown("""
-        ### 🎯 Cách sử dụng:
-        1. **Điền thông tin cơ bản** về công ty (loại, ngành, quy mô, OT policy)
-        2. **Mô tả chi tiết** về công ty trong 3 ô text
-        3. **Click Dự đoán** để nhận kết quả
+    # # Instructions
+    # with st.expander("📖 Hướng dẫn sử dụng", expanded=False):
+    #     st.markdown("""
+    #     ### 🎯 Cách sử dụng:
+    #     1. **Điền thông tin cơ bản** về công ty (loại, ngành, quy mô, OT policy)
+    #     2. **Mô tả chi tiết** về công ty trong 3 ô text
+    #     3. **Click Dự đoán** để nhận kết quả
         
-        ### 📊 Kết quả bao gồm:
-        - **Dự đoán chính**: Recommend hay Not Recommend
-        - **Xác suất**: Tỷ lệ % cho mỗi class
-        - **Độ tin cậy**: Mức độ chắc chắn của model
-        - **Feature Importance**: Yếu tố nào quan trọng nhất
+    #     ### 📊 Kết quả bao gồm:
+    #     - **Dự đoán chính**: Recommend hay Not Recommend
+    #     - **Xác suất**: Tỷ lệ % cho mỗi class
+    #     - **Độ tin cậy**: Mức độ chắc chắn của model
+    #     - **Feature Importance**: Yếu tố nào quan trọng nhất
         
-        ### 🤖 Model Information:
-        - **Model**: GradientBoostingClassifier từ Scikit-learn
-        - **Features**: 4 categorical + 768 text embeddings = 772 total
-        - **Files cần thiết**: 
-          - `model/best_model_skl_gradient_boosting.pkl`
-          - `model/label_encoders.pkl`
-          - `model/feature_scaler.pkl`
-          - `files/text_embeddings.npy` (optional)
+    #     ### 🤖 Model Information:
+    #     - **Model**: GradientBoostingClassifier từ Scikit-learn
+    #     - **Features**: 4 categorical + 768 text embeddings = 772 total
+    #     - **Files cần thiết**: 
+    #       - `model/best_model_skl_gradient_boosting.pkl`
+    #       - `model/label_encoders.pkl`
+    #       - `model/feature_scaler.pkl`
+    #       - `files/text_embeddings.npy` (optional)
         
-        ### 💡 Lưu ý:
-        - Model được train trên dữ liệu ITViec thật
-        - Chỉ sử dụng 4 categorical features như training
-        - Text embeddings: Sử dụng pre-computed nếu có, dummy nếu không
-        - Kết quả phụ thuộc vào chất lượng mô tả công ty
-        """)
+    #     ### 💡 Lưu ý:
+    #     - Model được train trên dữ liệu ITViec thật
+    #     - Chỉ sử dụng 4 categorical features như training
+    #     - Text embeddings: Sử dụng pre-computed nếu có, dummy nếu không
+    #     - Kết quả phụ thuộc vào chất lượng mô tả công ty
+    #     """)
     
-    # Technical info
-    with st.expander("🔬 Thông tin kỹ thuật", expanded=False):
-        st.markdown("#### 🧠 Architecture:")
-        st.markdown("""
-        **Preprocessing Pipeline:**
-        - Categorical encoding: Label encoders từ training (4 features)
-        - Feature scaling: StandardScaler từ training  
-        - Text processing: Pre-computed embeddings hoặc dummy cho demo
+    # # Technical info
+    # with st.expander("🔬 Thông tin kỹ thuật", expanded=False):
+    #     st.markdown("#### 🧠 Architecture:")
+    #     st.markdown("""
+    #     **Preprocessing Pipeline:**
+    #     - Categorical encoding: Label encoders từ training (4 features)
+    #     - Feature scaling: StandardScaler từ training  
+    #     - Text processing: Pre-computed embeddings hoặc dummy cho demo
         
-        **Model Details:**
-        - Type: GradientBoostingClassifier (Scikit-learn)
-        - Features: 772 total (768 text + 4 categorical scaled)
-        - Training: Đã hoàn thành với dữ liệu ITViec
+    #     **Model Details:**
+    #     - Type: GradientBoostingClassifier (Scikit-learn)
+    #     - Features: 772 total (768 text + 4 categorical scaled)
+    #     - Training: Đã hoàn thành với dữ liệu ITViec
         
-        **Categorical Features Used:**
-        - Company Type
-        - Company industry  
-        - Company size
-        - Overtime Policy
+    #     **Categorical Features Used:**
+    #     - Company Type
+    #     - Company industry  
+    #     - Company size
+    #     - Overtime Policy
         
-        **Files Usage:**
-        - Model: Loaded từ best_model_skl_gradient_boosting.pkl
-        - Encoders: Loaded từ label_encoders.pkl
-        - Scaler: Loaded từ feature_scaler.pkl
-        - Embeddings: Optional từ text_embeddings.npy
-        """)
+    #     **Files Usage:**
+    #     - Model: Loaded từ best_model_skl_gradient_boosting.pkl
+    #     - Encoders: Loaded từ label_encoders.pkl
+    #     - Scaler: Loaded từ feature_scaler.pkl
+    #     - Embeddings: Optional từ text_embeddings.npy
+    #     """)
         
-        st.markdown("#### 📊 Current Model Stats:")
-        if hasattr(model, 'n_features_in_'):
-            st.write(f"• Expected features: {model.n_features_in_}")
-        if hasattr(model, 'n_classes_'):
-            st.write(f"• Number of classes: {model.n_classes_}")
-        if hasattr(model, 'feature_importances_'):
-            st.write(f"• Feature importance available: ✅")
+    #     st.markdown("#### 📊 Current Model Stats:")
+    #     if hasattr(model, 'n_features_in_'):
+    #         st.write(f"• Expected features: {model.n_features_in_}")
+    #     if hasattr(model, 'n_classes_'):
+    #         st.write(f"• Number of classes: {model.n_classes_}")
+    #     if hasattr(model, 'feature_importances_'):
+    #         st.write(f"• Feature importance available: ✅")
             
-            # Show categorical feature importance
-            if label_encoders:
-                cat_start_idx = 768  # After text features
-                cat_importance = model.feature_importances_[cat_start_idx:]
-                cat_names = ['Company_Type', 'Company_Industry', 'Company_Size', 'Overtime_Policy']
+    #         # Show categorical feature importance
+    #         if label_encoders:
+    #             cat_start_idx = 768  # After text features
+    #             cat_importance = model.feature_importances_[cat_start_idx:]
+    #             cat_names = ['Company_Type', 'Company_Industry', 'Company_Size', 'Overtime_Policy']
                 
-                st.write("• Categorical features importance:")
-                for i, (name, imp) in enumerate(zip(cat_names, cat_importance)):
-                    st.write(f"  {i+1}. {name}: {imp:.4f}")
+    #             st.write("• Categorical features importance:")
+    #             for i, (name, imp) in enumerate(zip(cat_names, cat_importance)):
+    #                 st.write(f"  {i+1}. {name}: {imp:.4f}")
         
-        # Show loaded components info
-        st.markdown("#### 📦 Loaded Components:")
-        st.write(f"• Label encoders: {len(label_encoders) if label_encoders else 0} columns")
-        st.write(f"• Feature scaler: {'✅' if feature_scaler else '❌'}")
-        st.write(f"• Text embeddings: {'✅' if text_embeddings is not None else '❌ (using dummy)'}")
+    #     # Show loaded components info
+    #     st.markdown("#### 📦 Loaded Components:")
+    #     st.write(f"• Label encoders: {len(label_encoders) if label_encoders else 0} columns")
+    #     st.write(f"• Feature scaler: {'✅' if feature_scaler else '❌'}")
+    #     st.write(f"• Text embeddings: {'✅' if text_embeddings is not None else '❌ (using dummy)'}")
         
-        if label_encoders:
-            st.write("• Categorical columns:")
-            for col, encoder in label_encoders.items():
-                st.write(f"  - {col}: {len(encoder.classes_)} classes")
+    #     if label_encoders:
+    #         st.write("• Categorical columns:")
+    #         for col, encoder in label_encoders.items():
+    #             st.write(f"  - {col}: {len(encoder.classes_)} classes")
 
 def candidate_classification_tab():
     """Main function cho Candidate Classification tab"""
