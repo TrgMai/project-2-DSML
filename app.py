@@ -126,7 +126,7 @@ st.markdown("""
 
 # Header chính
 if os.path.exists("images/banner.png"):
-        st.image("images/banner.png", use_column_width=True)
+        st.image("images/banner.png", use_container_width=True)
 st.markdown("""
 <div class="main-header">
     <div class="main-title">Đồ án tốt nghiệp - Data Science and Machine Learning</div>

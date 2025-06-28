@@ -187,7 +187,7 @@ def show_candidate_overview():
     
     # Word Cloud placeholder
     try:
-        st.image("images/Word Cloud 1.png", caption="Word Cloud của mô tả công việc", width=1200)
+        st.image("images/Word Cloud 1.png", caption="Word Cloud của mô tả công việc", use_container_width=True)
     except:
         st.markdown("""
         <div style="background: #34495e; padding: 2rem; border-radius: 10px; text-align: center; height: 300px; display: flex; flex-direction: column; justify-content: center;">
