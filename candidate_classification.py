@@ -394,29 +394,29 @@ def show_candidate_overview():
     st.markdown("---")
     col11, col12 = st.columns([1, 1])
     
-    with col11:
-        st.markdown("##### 📊 Classification Report")
+    # with col11:
+    #     st.markdown("##### 📊 Classification Report")
         
-        # Classification Report - đơn giản hóa để tránh lỗi hiển thị
-        report_data = [
-            ['Not Recommend', '0.97', '0.82', '0.89', '38'],
-            ['Recommend', '0.89', '0.98', '0.93', '58'],
-            ['Accuracy', '', '', '0.92', '96'],
-            ['Macro avg', '0.93', '0.90', '0.91', '96'],
-            ['Weighted avg', '0.92', '0.92', '0.92', '96']
-        ]
+    #     # Classification Report - đơn giản hóa để tránh lỗi hiển thị
+    #     report_data = [
+    #         ['Not Recommend', '0.97', '0.82', '0.89', '38'],
+    #         ['Recommend', '0.89', '0.98', '0.93', '58'],
+    #         ['Accuracy', '', '', '0.92', '96'],
+    #         ['Macro avg', '0.93', '0.90', '0.91', '96'],
+    #         ['Weighted avg', '0.92', '0.92', '0.92', '96']
+    #     ]
         
-        report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-score', 'Support'])
+    #     report_df = pd.DataFrame(report_data, columns=['Class', 'Precision', 'Recall', 'F1-score', 'Support'])
         
-        # Hiển thị bảng đơn giản không có styling phức tạp
-        st.dataframe(report_df, use_container_width=True, hide_index=True)
+    #     # Hiển thị bảng đơn giản không có styling phức tạp
+    #     st.dataframe(report_df, use_container_width=True, hide_index=True)
         
-        # Summary
-        st.markdown("""
-        <div style="background: #2c3e50; padding: 1rem; border-radius: 5px; margin-top: 1rem;">
-            <p style="color: #2ecc71; margin: 0;"><strong>✅ Kết luận:</strong> Mô hình có độ chính xác cao (92%) với khả năng phân loại tốt cho cả hai class</p>
-        </div>
-        """, unsafe_allow_html=True)
+    #     # Summary
+    #     st.markdown("""
+    #     <div style="background: #2c3e50; padding: 1rem; border-radius: 5px; margin-top: 1rem;">
+    #         <p style="color: #2ecc71; margin: 0;"><strong>✅ Kết luận:</strong> Mô hình có độ chính xác cao (92%) với khả năng phân loại tốt cho cả hai class</p>
+    #     </div>
+    #     """, unsafe_allow_html=True)
     
     with col12:
         st.markdown("##### 📊 Model Performance Summary")
