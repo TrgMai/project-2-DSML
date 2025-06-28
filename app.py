@@ -288,6 +288,6 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align: center; color: #95a5a6; padding: 1rem;">
     <p>🎓 Đồ án tốt nghiệp - Data Science and Machine Learning</p>
-    <p>Developed with ❤️ using Streamlit | © 2024 ITViec Clone</p>
+    <p>Developed with ❤️ using Streamlit | © 2025 ITViec Clone</p>
 </div>
 """, unsafe_allow_html=True)
