@@ -382,7 +382,7 @@ def show_company_overview():
     with col1:
         st.markdown("#### Word Cloud cho 'full_text'")
         if os.path.exists('images/wordcloud_full_text.png'):
-            st.image('images/wordcloud_full_text.png', use_column_width=True)
+            st.image('images/wordcloud_full_text.png', width=800)
         else:
             # Create placeholder word cloud data
             st.info("Word Cloud: Các từ phổ biến: 'công ty', 'phát triển', 'công nghệ', 'team', 'work', 'company', 'development', 'technology'")
@@ -390,7 +390,7 @@ def show_company_overview():
     with col2:
         st.markdown("#### Word Cloud cho 'processed_description'")
         if os.path.exists('images/wordcloud_processed_description.png'):
-            st.image('images/wordcloud_processed_description.png', use_column_width=True)
+            st.image('images/wordcloud_processed_description.png', width=800)
         else:
             st.info("Word Cloud: Các từ sau xử lý: 'solution', 'work', 'company', 'team', 'business', 'employee', 'service'")
     
