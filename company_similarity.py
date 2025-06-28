@@ -166,14 +166,14 @@ class CompanySimilarityEngine:
             return None
         
         # Debug: Check similarity matrix properties
-        st.write(f"**Debug TF-IDF similarity matrix:**")
-        st.write(f"Matrix shape: {similarity_matrix.shape}")
-        st.write(f"Matrix type: {type(similarity_matrix)}")
-        st.write(f"Matrix min: {similarity_matrix.min():.6f}")
-        st.write(f"Matrix max: {similarity_matrix.max():.6f}")
-        st.write(f"Diagonal values (first 10): {np.diag(similarity_matrix)[:10]}")
-        st.write(f"Number of 1.0 values: {np.sum(similarity_matrix == 1.0)}")
-        st.write(f"Total matrix values: {similarity_matrix.size}")
+        # st.write(f"**Debug TF-IDF similarity matrix:**")
+        # st.write(f"Matrix shape: {similarity_matrix.shape}")
+        # st.write(f"Matrix type: {type(similarity_matrix)}")
+        # st.write(f"Matrix min: {similarity_matrix.min():.6f}")
+        # st.write(f"Matrix max: {similarity_matrix.max():.6f}")
+        # st.write(f"Diagonal values (first 10): {np.diag(similarity_matrix)[:10]}")
+        # st.write(f"Number of 1.0 values: {np.sum(similarity_matrix == 1.0)}")
+        # st.write(f"Total matrix values: {similarity_matrix.size}")
         
         # Check if all values are 1.0
         if np.all(similarity_matrix == 1.0):
@@ -184,11 +184,11 @@ class CompanySimilarityEngine:
         similarity_scores = similarity_matrix[company_id]
         
         # Debug: Check similarity scores
-        st.write(f"**Debug similarity scores for company {company_id}:**")
-        st.write(f"Max similarity: {similarity_scores.max():.6f}")
-        st.write(f"Min similarity: {similarity_scores.min():.6f}")
-        st.write(f"Mean similarity: {similarity_scores.mean():.6f}")
-        st.write(f"Similarity with itself (should be 1.0): {similarity_scores[company_id]:.6f}")
+        # st.write(f"**Debug similarity scores for company {company_id}:**")
+        # st.write(f"Max similarity: {similarity_scores.max():.6f}")
+        # st.write(f"Min similarity: {similarity_scores.min():.6f}")
+        # st.write(f"Mean similarity: {similarity_scores.mean():.6f}")
+        # st.write(f"Similarity with itself (should be 1.0): {similarity_scores[company_id]:.6f}")
         
         # Get top similar companies (excluding itself)
         # Set similarity with itself to 0 to exclude it
@@ -211,10 +211,10 @@ class CompanySimilarityEngine:
         similar_indices = similarity_scores_copy.argsort()[::-1][:top_n]
         similar_scores = similarity_scores[similar_indices]  # Use original scores for display
         
-        # Debug: Show top scores
-        st.write(f"**Top {top_n} similar companies:**")
-        for i, (idx, score) in enumerate(zip(similar_indices, similar_scores)):
-            st.write(f"{i+1}. Company {idx}: {score:.6f}")
+        # # Debug: Show top scores
+        # st.write(f"**Top {top_n} similar companies:**")
+        # for i, (idx, score) in enumerate(zip(similar_indices, similar_scores)):
+        #     st.write(f"{i+1}. Company {idx}: {score:.6f}")
         
         return similar_indices, similar_scores
     
@@ -232,8 +232,8 @@ class CompanySimilarityEngine:
             model_key = f'{model_type}_{feature_type}'
         
         # Debug: Show what key we're looking for
-        st.write(f"**Debug:** Looking for model key: `{model_key}`")
-        st.write(f"**Available keys:** {list(self.models.keys())}")
+        # st.write(f"**Debug:** Looking for model key: `{model_key}`")
+        # st.write(f"**Available keys:** {list(self.models.keys())}")
         
         if model_key not in self.models:
             st.error(f"Model key '{model_key}' not found in loaded models")
