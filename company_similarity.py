@@ -397,46 +397,68 @@ def show_company_overview():
     # Text length distribution
     st.markdown("### 📊 Phân phối độ dài văn bản")
     
-    # Generate sample data for text length distribution
-    import numpy as np
+    # Create realistic data based on the actual distribution shown in image
+    # Character distribution (left chart)
+    char_bins = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
+    char_counts = [6, 7, 13, 16, 27, 30, 38, 35, 39, 18, 22, 12, 18, 7, 10, 5, 4, 1, 0, 0]
     
-    # Sample data based on the statistics shown
-    word_lengths = np.random.gamma(2, 400, 478)  # Approximating the distribution
-    char_lengths = word_lengths * 6.3  # Average characters per word
+    # Word distribution (right chart) 
+    word_bins = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400]
+    word_counts = [11, 14, 32, 44, 45, 40, 25, 23, 17, 12, 7, 6, 7, 9, 3, 2, 6, 5, 0, 0]
     
     col1, col2 = st.columns(2)
     
     with col1:
-        fig_words = px.histogram(
-            x=word_lengths,
-            nbins=30,
-            title="Phân phối độ dài văn bản (ký tự)",
-            labels={'x': 'Số ký tự', 'y': 'Tần suất'},
-            color_discrete_sequence=['#5b9bd5']
-        )
-        fig_words.update_layout(
-            paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)',
-            font_color='white',
-            height=400
-        )
-        st.plotly_chart(fig_words, use_container_width=True)
-    
-    with col2:
-        fig_chars = px.histogram(
-            x=char_lengths,
-            nbins=30,
-            title="Phân phối số từ",
-            labels={'x': 'Số từ', 'y': 'Tần suất'},
-            color_discrete_sequence=['#5b9bd5']
-        )
+        # Character distribution chart
+        fig_chars = go.Figure(data=[
+            go.Bar(
+                x=[(char_bins[i] + char_bins[i+1]) / 2 for i in range(len(char_bins)-1)],
+                y=char_counts,
+                width=[char_bins[i+1] - char_bins[i] for i in range(len(char_bins)-1)],
+                marker_color='#5b9bd5',
+                name='Tần suất'
+            )
+        ])
+        
         fig_chars.update_layout(
+            title="Phân phối độ dài văn bản (ký tự)",
+            xaxis_title="Số ký tự",
+            yaxis_title="Tần suất", 
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
             font_color='white',
-            height=400
+            height=400,
+            showlegend=False,
+            xaxis=dict(range=[0, 2000]),
+            yaxis=dict(range=[0, 45])
         )
         st.plotly_chart(fig_chars, use_container_width=True)
+    
+    with col2:
+        # Word distribution chart
+        fig_words = go.Figure(data=[
+            go.Bar(
+                x=[(word_bins[i] + word_bins[i+1]) / 2 for i in range(len(word_bins)-1)],
+                y=word_counts,
+                width=[word_bins[i+1] - word_bins[i] for i in range(len(word_bins)-1)],
+                marker_color='#5b9bd5',
+                name='Tần suất'
+            )
+        ])
+        
+        fig_words.update_layout(
+            title="Phân phối số từ",
+            xaxis_title="Số từ",
+            yaxis_title="Tần suất",
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            font_color='white',
+            height=400,
+            showlegend=False,
+            xaxis=dict(range=[0, 400]),
+            yaxis=dict(range=[0, 50])
+        )
+        st.plotly_chart(fig_words, use_container_width=True)
     
     # Models information
     st.markdown("### 🤖 Models Overview")
