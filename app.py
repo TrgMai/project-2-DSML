@@ -12,7 +12,7 @@ from company_similarity import show_company_similarity
 
 # Cấu hình trang
 st.set_page_config(
-    page_title="ITViec - Data Science and Machine Learning",
+    page_title="Data Science and Machine Learning",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="collapsed"
